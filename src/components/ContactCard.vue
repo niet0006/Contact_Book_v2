@@ -1,11 +1,14 @@
 <template>
-    <div class="contact-card">
-      <h3>{{ contact.firstName }} {{ contact.lastName }}</h3>
-      <p>Email: {{ contact.email }}</p>
-      <router-link :to="`/contact/${contact.id}`">View Details</router-link>
+  <div class="card h-100 d-flex flex-column">
+    <div class="card-body d-flex flex-column">
+      <h3 class="card-title">{{ contact.firstName }} {{ contact.lastName }}</h3>
+      <p class="card-text">Email: {{ contact.email }}</p>
+      <router-link :to="`/contact/${contact.id}`" class="btn btn-primary mt-auto">View Details</router-link>
     </div>
-  </template>
-  
+  </div>
+</template>
+
+
   <script>
   export default {
     name: 'ContactCard',

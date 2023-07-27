@@ -1,20 +1,14 @@
 <template>
-  <div>
-    <h1>Contact List</h1>
+  <div class="container my-3">
+    <h1 class="text-center">Contact List</h1>
     <ContactSearch @update:contacts="updateContacts"/>
-    <div class="row">
-      <div v-for="contact in filteredContacts" :key="contact.id" class="col-sm-6 col-md-4 col-lg-3 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-              <router-link :to="`/contact/${contact.id}`">
-                {{ contact.firstName }} {{ contact.lastName }}
-              </router-link>
-            </h5>
-            <p class="card-text">{{ contact.email }}</p>
-          </div>
-        </div>
-      </div>
+    <div class="row justify-content-center">
+      <ContactCard 
+        v-for="contact in filteredContacts" 
+        :key="contact.id"
+        :contact="contact"
+        class="col-sm-6 col-md-4 col-lg-3 mb-4"
+      />
     </div>
     <CreateContact @refreshContacts="getContactsFromStorage"/>
   </div>
@@ -23,7 +17,9 @@
 <script>
 import { getContacts } from '../utils/storage'
 import ContactSearch from '../components/ContactSearch.vue'
+import ContactCard from '../components/ContactCard.vue'
 import CreateContact from '../components/CreateContact.vue'
+
 
 export default {
   data() {
@@ -34,7 +30,8 @@ export default {
   },
   components: {
     ContactSearch,
-    CreateContact
+    CreateContact,
+    ContactCard
   },
   computed: {
     filteredContacts() {
