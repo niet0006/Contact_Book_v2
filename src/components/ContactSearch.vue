@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <h2>Search Contacts</h2>
-    <input v-model="searchQuery">
+  <div class="container my-3">
+    <h2 class="my-3">Search Contacts</h2>
+    <div class="input-group">
+      <input type="text" class="form-control" v-model="searchQuery" @input="updateSearch" placeholder="Search contacts...">
+    </div>
   </div>
 </template>
+
 
 <script>
 import { getContacts } from '../utils/storage';

@@ -2,7 +2,6 @@
   <div>
     <h1>Contact List</h1>
     <ContactSearch @update:contacts="updateContacts"/>
-    <CreateContact @refreshContacts="getContactsFromStorage"/>
     <div class="row">
       <div v-for="contact in filteredContacts" :key="contact.id" class="col-sm-6 col-md-4 col-lg-3 mb-4">
         <div class="card">
@@ -17,6 +16,7 @@
         </div>
       </div>
     </div>
+    <CreateContact @refreshContacts="getContactsFromStorage"/>
   </div>
 </template>
 
