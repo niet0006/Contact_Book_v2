@@ -33,36 +33,32 @@
   </div>
 </template>
 
-  
-  <script>
-  
-  export default {
-    data: function() {
-      return {
-        contact: {},
-        contacts: [],
-        editing: false,
-      };
-    },
-    created() {
-  const storedContacts = localStorage.getItem('contacts');
-  if (storedContacts) {
-    this.contacts = JSON.parse(storedContacts);
-    this.contact = this.contacts.find(contact => contact.id === Number(this.$route.params.id));
-  }
-}
-,
-    methods: {
-      updateContact() {
-        localStorage.setItem('contacts', JSON.stringify(this.contacts.map(contact => contact.id == this.contact.id ? {...this.contact} : contact )));
-        this.editing = false;
-      },
-      deleteContact() {
-        this.contacts = this.contacts.filter(contact => contact.id != this.contact.id);
-        saveContacts(this.contacts);
-        this.$router.push('/contacts');
-      },
+<script>
+export default {
+  data: function() {
+    return {
+      contact: {},
+      contacts: [],
+      editing: false,
     }
-  }
-  </script>
-  
+  },
+  created() {
+    const storedContacts = localStorage.getItem('contacts');
+    if (storedContacts) {
+      this.contacts = JSON.parse(storedContacts);
+      this.contact = this.contacts.find(contact => contact.id === Number(this.$route.params.id));
+    }
+  },
+  methods: {
+    updateContact() {
+      localStorage.setItem('contacts', JSON.stringify(this.contacts.map(contact => contact.id === this.contact.id ? { ...this.contact } : contact)));
+      this.editing = false;
+    },
+    deleteContact() {
+      this.contacts = this.contacts.filter(contact => contact.id !== this.contact.id);
+      localStorage.setItem('contacts', JSON.stringify(this.contacts));
+      this.$router.push('/'); 
+    },
+  },
+}
+</script>
